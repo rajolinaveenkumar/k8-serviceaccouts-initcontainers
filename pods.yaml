@@ -1,0 +1,51 @@
+# Creating pods in one namespace to check the rbac working or not 
+
+apiVersion: v1 
+kind: Namespace  
+
+metadata:
+  name: prod
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod 
+  namespace: prod
+spec:
+ 
+  containers:
+  - name: nginx 
+    image: nginx 
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  namespace: prod
+  labels: 
+    created_by: naveenrajoli
+    SNOW: CHG00065784
+    project: expense
+    component: frontend-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      project: expense
+      component: frontend-nginx
+  template:
+    metadata:
+      labels:
+        project: expense
+        component: frontend-nginx
+        service: port-80-running
+    spec:
+      containers:
+      - name: nginx
+        image: naveenrajoli/deployment:1.0.2
+        ports:
+        - containerPort: 80
