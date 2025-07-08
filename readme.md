@@ -39,7 +39,7 @@ eksctl create iamserviceaccount \
 ```
 eksctl create iamserviceaccount \
 --cluster=rajolinaveen \
---namespace=prod \
+--namespace=dev \
 --name=expense-mysql-secret \
 --attach-policy-arn=arn:aws:iam::343430925817:policy/ExpenseMYSQLSecrets \
 --override-existing-serviceaccounts \

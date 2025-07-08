@@ -1,17 +1,9 @@
 
-apiVersion: v1 
-kind: Namespace  
-
-metadata:
-  name: prod
-
----
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-deployment
-  namespace: prod
+  namespace: dev
   labels: 
     created_by: naveenrajoli
     SNOW: CHG00065784
