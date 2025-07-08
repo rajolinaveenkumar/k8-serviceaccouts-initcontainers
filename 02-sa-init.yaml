@@ -22,6 +22,7 @@ spec:
         component: frontend-nginx
         service: port-80-running
     spec:
+      serviceAccount: expense-mysql-secret
       volumes:
       - name: secret-volume
         emptyDir: {}
