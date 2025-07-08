@@ -5,19 +5,6 @@ kind: Namespace
 
 metadata:
   name: prod
----
-
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod 
-  namespace: prod
-spec:
- 
-  containers:
-  - name: nginx 
-    image: nginx 
-
 
 ---
 
@@ -29,7 +16,7 @@ metadata:
   labels: 
     created_by: naveenrajoli
     SNOW: CHG00065784
-    project: expense
+    project: ensexpe
     component: frontend-nginx
 spec:
   replicas: 2
@@ -44,8 +31,23 @@ spec:
         component: frontend-nginx
         service: port-80-running
     spec:
+      volume:
+      - name: secret-volume
+        emptyDir: {}
+
+      initContainers:
+      - name: awscli
+        image:  amazon/aws-cli 
+        command: ['sh', '-c', 'aws secretsmanager get-secret-value --secret-id expense/mysql/creds --query SecretString --output text > /secrets/.env']
+        volumeMounts:
+        - mountPath: /secrets
+          name: secret-volume
+
       containers:
       - name: nginx
         image: naveenrajoli/deployment:1.0.2
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: /secrets
+          name: secret-volume
