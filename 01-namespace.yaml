@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Namespace  
+
+metadata:
+  name: prod
+
+
+
+# 1. namespace
+# 2. create service account
+# 3. run pods 
