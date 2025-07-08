@@ -1,4 +1,3 @@
-# Creating pods in one namespace to check the rbac working or not 
 
 apiVersion: v1 
 kind: Namespace  
@@ -31,7 +30,7 @@ spec:
         component: frontend-nginx
         service: port-80-running
     spec:
-      volume:
+      volumes:
       - name: secret-volume
         emptyDir: {}
 
