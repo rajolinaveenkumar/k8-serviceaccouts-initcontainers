@@ -37,6 +37,7 @@ eksctl create iamserviceaccount \
 
 # SERVICE ACCOUNT SETUP
 ```
+eksctl create iamserviceaccount \
 --cluster=rajolinaveen \
 --namespace=prod \
 --name=expense-mysql-secret \
