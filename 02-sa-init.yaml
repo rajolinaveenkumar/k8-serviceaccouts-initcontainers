@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-deployment
-  namespace: dev
+  namespace: rnk
   labels: 
     created_by: naveenrajoli
     SNOW: CHG00065784
